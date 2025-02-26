@@ -16,7 +16,7 @@ public class JavaQuestionController {
     this.questionService = questionService;
   }
 
-  @PostMapping("/add")
+  @GetMapping("/add")
   public Question addQuestion(@RequestParam String question,
       @RequestParam String answer) {
     return questionService.add(question, answer);
