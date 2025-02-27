@@ -22,7 +22,7 @@ public class JavaQuestionController {
     return questionService.add(question, answer);
   }
 
-  @DeleteMapping("/remove")
+  @GetMapping("/remove")
   public ResponseEntity<Question> removeQuestion(@RequestParam String question,
       @RequestParam String answer) {
     try {
