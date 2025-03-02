@@ -1,5 +1,6 @@
 package pro.sky.java.course2.examinerservice.service;
 
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import pro.sky.java.course2.examinerservice.domain.Question;
 import pro.sky.java.course2.examinerservice.domain.QuestionService;
@@ -40,5 +41,13 @@ public class JavaQuestionService implements QuestionService {
     public Question getRandomQuestion() {
         int index = random.nextInt(questions.size());
         return new ArrayList<>(questions).get(index);
+    }
+
+    @Override
+    public Collection<Question> find(String question, String answer) {
+        return questions.stream()
+            .filter(q -> question == null || q.getQuestion().equalsIgnoreCase(question))
+            .filter(q -> answer == null || q.getAnswer().equalsIgnoreCase(answer))
+            .collect(Collectors.toList());
     }
 }

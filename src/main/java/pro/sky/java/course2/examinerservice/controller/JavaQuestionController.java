@@ -32,6 +32,19 @@ public class JavaQuestionController {
     }
   }
 
+  @GetMapping("/find")
+  public ResponseEntity<Collection<Question>> findQuestions(
+      @RequestParam(required = false) String question,
+      @RequestParam(required = false) String answer) {
+
+    Collection<Question> result = questionService.find(question, answer);
+
+    if (result.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(result);
+  }
+
   @GetMapping
   public Collection<Question> getAllQuestions() {
     return questionService.getAll();

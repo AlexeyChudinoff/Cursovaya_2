@@ -7,8 +7,11 @@ public class Question {
   private final String answer;
 
   public Question(String question, String answer) {
-    this.question = question;
-    this.answer = answer;
+    this.question = Objects.requireNonNull(question, "Question cannot be null");
+    this.answer = Objects.requireNonNull(answer, "Answer cannot be null");
+    if (this.question.isBlank() || this.answer.isBlank()) {
+      throw new IllegalArgumentException("Question and answer cannot be empty");
+    }
   }
 
   public String getQuestion() {
